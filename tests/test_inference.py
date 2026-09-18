@@ -2,10 +2,15 @@ import sys
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
+import io
+import hashlib
+import json
 
 import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from inference import legalize, read_query, read_bpp, load_features
+import download_model
 
 
 class InputTests(unittest.TestCase):
@@ -57,6 +62,23 @@ class InputTests(unittest.TestCase):
         pairs = fi[:, None, :, None] * fi[None, :, None, :]
         _, fij, _ = legalize(fi, pairs.reshape(2, 2, 25))
         np.testing.assert_allclose(fij[0, :, 1, :], np.outer(fi[0], fi[1]), atol=1e-7)
+
+    def test_download_failure_then_retry(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)/'model.onnx'
+            data = b'test artifact'
+            manifest = json.dumps({'url': 'https://example.org/model',
+                                   'sha256': hashlib.sha256(data).hexdigest()})
+            with patch.object(sys, 'argv', ['download_model.py', '--out', str(out)]), \
+                 patch.object(Path, 'read_text', return_value=manifest):
+                with patch('urllib.request.urlopen', side_effect=OSError('Disconnected')):
+                    with self.assertRaises(OSError):
+                        download_model.main()
+                self.assertEqual(list(Path(tmp).iterdir()), [])
+                with patch('urllib.request.urlopen', return_value=io.BytesIO(data)):
+                    download_model.main()
+                self.assertEqual(out.read_bytes(), data)
+                self.assertEqual(list(Path(tmp).iterdir()), [out])
 
 
 if __name__ == '__main__':

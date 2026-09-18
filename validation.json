@@ -2,6 +2,13 @@
   {
     "id": "5NEF_A",
     "length": 18,
+    "sampling_smoke": {
+      "synthetic_depth": 32,
+      "total_depth": 33,
+      "fit_epochs": 20,
+      "sample_covariance_pearson": -0.023674603551626205,
+      "scope": "Execution and format only; not converged or quality-validated"
+    },
     "max_abs_errors": [
       3.8743019104003906e-07,
       2.980232238769531e-07,
@@ -15,6 +22,13 @@
   {
     "id": "1GAX_C",
     "length": 75,
+    "sampling_smoke": {
+      "synthetic_depth": 32,
+      "total_depth": 33,
+      "fit_epochs": 20,
+      "sample_covariance_pearson": -0.013415423221886158,
+      "scope": "Execution and format only; not converged or quality-validated"
+    },
     "max_abs_errors": [
       4.172325134277344e-07,
       4.3213367462158203e-07,

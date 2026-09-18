@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import urllib.request
 import tempfile
@@ -27,9 +28,7 @@ def main():
         if digest.hexdigest() != manifest['sha256']:
             raise ValueError('Download checksum mismatch')
         # Do not overwrite a destination another process created meanwhile.
-        with partial.open('rb') as source, args.out.open('xb') as target:
-            import shutil
-            shutil.copyfileobj(source, target)
+        os.link(partial, args.out)
     finally:
         if partial is not None:
             partial.unlink(missing_ok=True)
