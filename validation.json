@@ -1,0 +1,28 @@
+[
+  {
+    "id": "5NEF_A",
+    "length": 18,
+    "max_abs_errors": [
+      3.8743019104003906e-07,
+      2.980232238769531e-07,
+      2.205371856689453e-06
+    ],
+    "projection": {
+      "ipf_iterations": 21,
+      "marginal_max_abs_error": 8.316985695822066e-05
+    }
+  },
+  {
+    "id": "1GAX_C",
+    "length": 75,
+    "max_abs_errors": [
+      4.172325134277344e-07,
+      4.3213367462158203e-07,
+      6.0498714447021484e-06
+    ],
+    "projection": {
+      "ipf_iterations": 92,
+      "marginal_max_abs_error": 9.39542310124386e-05
+    }
+  }
+]

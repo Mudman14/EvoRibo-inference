@@ -1,0 +1,11 @@
+# Optional: only needed to compute new RESM features from query sequences.
+# Use Python 3.12+; existing feature bundles do not need these dependencies.
+-r requirements.txt
+pytorch-lightning==2.6.5
+transformers==5.14.1
+tape-proteins==0.5
+einops==0.8.2
+scikit-learn==1.8.0
+scipy==1.17.1
+biopython==1.87
+numba==0.66.0

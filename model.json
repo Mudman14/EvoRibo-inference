@@ -1,0 +1,12 @@
+{
+  "version": "v0.1.0",
+  "url": "https://github.com/Mudman14/EvoRibo-inference/releases/download/v0.1.0/evoribo.onnx",
+  "sha256": "24e71c69351b3509200e8bc91bd3038aa23b150012d158150ee43f9a037d982e",
+  "bytes": 492827527,
+  "checkpoint_label": "8k_epoch75",
+  "input_embedding_dim": 1280,
+  "input_attention_channels": 660,
+  "stats_alphabet": "-ACGU",
+  "flow_steps": 4,
+  "flow_initial_noise_scale": 0.0
+}
